@@ -1,0 +1,32 @@
+server:
+  host: 127.0.0.1
+  port: 11435
+  timeout_seconds: 0
+  config_reload_seconds: 1.0
+  log_level: INFO
+management:
+  enabled: false
+interfaces:
+  openai:
+    enabled: true
+  ollama:
+    enabled: true
+  anthropic:
+    enabled: true
+    authentication:
+      allow_any_token: true
+      token: null
+providers:
+  test-provider:
+    extension: ollama
+    enabled: true
+    config:
+      outbound_interface: openai
+      base_url: http://upstream.test
+models:
+  test-model:
+    upstream_model: test-model:latest
+    provider: test-provider
+    interfaces: [openai, ollama]
+    parameters: {}
+policies: []

@@ -1,0 +1,48 @@
+{
+  "name": "@llm-proxy/management-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=@llm-proxy/management-sdk && npm run build --workspace=@llm-proxy/admin-api-client && npm run build --workspace=@llm-proxy/ui-primitives && npm run build --workspace=@llm-proxy/core-management",
+    "build:package": "npm run build && node scripts/publish-python-assets.cjs",
+    "clean": "npm run clean --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run build --workspace=@llm-proxy/management-sdk && npm run build --workspace=@llm-proxy/admin-api-client && npm run test --workspaces --if-present",
+    "test:browser": "npm run test:browser --workspace=@llm-proxy/core-management",
+    "verify:focused": "node scripts/verify.cjs focused",
+    "verify:warm": "node scripts/verify.cjs warm",
+    "verify:clean": "node scripts/verify.cjs clean",
+    "verify:distribution": "../.venv/bin/python ../scripts/verify_management_distribution.py",
+    "typecheck": "npm run build --workspace=@llm-proxy/management-sdk && npm run typecheck --workspace=@llm-proxy/admin-api-client && npm run typecheck --workspace=@llm-proxy/ui-primitives && npm run typecheck --workspace=@llm-proxy/core-management"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "eslint": "^9.17.0",
+    "html-webpack-plugin": "^5.6.3",
+    "jest-environment-jsdom": "^29.7.0",
+    "jsdom": "^26.0.0",
+    "playwright": "^1.62.1",
+    "ts-jest": "^29.2.5",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.7.2",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.2.0"
+  },
+  "overrides": {
+    "sockjs": {
+      "uuid": "^11.1.1"
+    }
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}

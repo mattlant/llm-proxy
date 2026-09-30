@@ -1,0 +1,24 @@
+{
+  "model": "local-opus",
+  "max_tokens": 1024,
+  "messages": [{
+    "role": "user",
+    "content": [
+      {"type": "text", "text": "fixture request"},
+      {"type": "text", "text": "fixture cache boundary", "cache_control": {"type": "ephemeral"}}
+    ]
+  }],
+  "metadata": {"user_id": "fixture-user"},
+  "stream": true,
+  "system": [
+    {"type": "text", "text": "fixture system"},
+    {"type": "text", "text": "fixture cache boundary one", "cache_control": {"type": "ephemeral"}},
+    {"type": "text", "text": "fixture cache boundary two", "cache_control": {"type": "ephemeral"}}
+  ],
+  "tools": [],
+  "output_config": {"effort": "high"},
+  "thinking": {"type": "adaptive", "display": "omitted"},
+  "context_management": {
+    "edits": [{"type": "clear_thinking_20251015", "keep": "all"}]
+  }
+}

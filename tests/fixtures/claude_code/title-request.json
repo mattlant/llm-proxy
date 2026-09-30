@@ -1,0 +1,21 @@
+{
+  "model": "local-opus",
+  "max_tokens": 1024,
+  "messages": [{"role": "user", "content": "fixture request"}],
+  "metadata": {"user_id": "fixture-user"},
+  "stream": false,
+  "system": [{"type": "text", "text": "fixture system"}],
+  "tools": [],
+  "output_config": {
+    "effort": "high",
+    "format": {
+      "type": "json_schema",
+      "schema": {
+        "type": "object",
+        "properties": {"title": {"type": "string"}},
+        "required": ["title"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+server:
+  host: "127.0.0.1"
+  port: 11435
+  timeout_seconds: 0
+  config_reload_seconds: 1.0
+  log_level: INFO
+  payload_trace_mode: disabled # disabled | structured | raw | both
+  payload_trace_include_content: true # omit message/reasoning text from traces when false
+  transport_debug: false # enable low-level httpx/httpcore DEBUG logs (restart required)
+  file_logging:
+    enabled: false
+    directory: "./logs"
+
+management:
+  enabled: false
+  token_env: LLM_PROXY_ADMIN_TOKEN
+  allow_remote: false
+  command_timeout_seconds: 10
+
+model_access:
+  mode: configured_only # configured_only | provider_passthrough
+  listing_timeout_seconds: 3
+
+interfaces:
+  openai: {enabled: true}
+  ollama: {enabled: true}
+  anthropic:
+    enabled: true
+    authentication: {allow_any_token: true, token: null}
+    expose_thinking: false
+
+providers:
+  local:
+    extension: ollama
+    config:
+      base_url: "http://127.0.0.1:11434"
+      outbound_interface: openai
+    enabled: true
+    listing_enabled: false # opt in only when dynamic provider listing is wanted
+
+# Installed extensions are activated at startup. Policy arguments are non-secret.
+extensions: {}
+
+models:
+  example:
+    upstream_model: "example-model:latest"
+    provider: local
+    interfaces: [openai, ollama, anthropic]
+    aliases: {}
+    parameters: {}
+    compatibility:
+      expose_thinking: false
+      native_tools: true
+      structured_output: unsupported
+
+policies:
+  - name: route-qwen-family
+    enabled: true
+    match:
+      interfaces: [openai]
+      model_contains_any: [qwen]
+      model_wildcard_any: ["*35B*"]
+
+    actions:
+      parameters: { temperature: 0.7 }

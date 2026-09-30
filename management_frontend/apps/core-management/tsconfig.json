@@ -1,0 +1,1 @@
+{"extends":"../../tsconfig.base.json","compilerOptions":{"noEmit":true,"baseUrl":".","paths":{"@llm-proxy/management-sdk":["../../packages/management-sdk/src"],"@llm-proxy/admin-api-client":["../../packages/admin-api-client/src"],"@llm-proxy/ui-primitives":["../../packages/ui-primitives/src"]}},"include":["src"]}

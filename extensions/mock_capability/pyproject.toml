@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-proxy-mock-capability"
+version = "0.1.0"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.12.3"
+dependencies = ["llm-proxy>=0.4.0,<1"]
+
+[project.entry-points."llm_proxy.extensions"]
+deterministic_mock = "llm_proxy_mock_capability.extension:extension"
+
+[tool.setuptools.packages.find]
+where = ["src"]

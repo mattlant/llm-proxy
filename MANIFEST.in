@@ -1,0 +1,2 @@
+recursive-include llm_proxy/static/management *
+include build_backend.py

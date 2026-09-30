@@ -1,0 +1,6 @@
+{
+  "name": "@llm-proxy/core-management",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {"build":"webpack --mode production","start":"webpack serve --mode development","clean":"rm -rf dist","lint":"eslint src","typecheck":"tsc --noEmit -p tsconfig.json","test":"node --test test/*.test.cjs","test:browser":"RUN_LIVE_BROWSER_TEST=1 node --test test/browser.test.cjs"}
+}

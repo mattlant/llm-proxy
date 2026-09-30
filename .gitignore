@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+
+build/
+dist/
+*.egg-info/
+
+llm_proxy/static/management/
+
+.temp/
+
+logs/
+**/logs/
+
+/config.yaml

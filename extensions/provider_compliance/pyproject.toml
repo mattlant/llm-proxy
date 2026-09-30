@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-proxy-provider-compliance"
+version = "0.1.0"
+description = "Public-SDK pytest compliance suite for llm-proxy provider extensions"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.12.3"
+dependencies = [
+  "llm-proxy>=0.4.0,<1",
+  "pytest>=8.0",
+  "pytest-asyncio>=0.23",
+]
+
+[project.entry-points.pytest11]
+llm_proxy_provider_compliance = "llm_proxy_provider_compliance.pytest_plugin"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
